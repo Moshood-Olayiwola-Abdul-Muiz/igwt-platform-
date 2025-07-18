@@ -1,42 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>IGWT Platform – Free Trial</title>
+  <title>Start Your Free Trial – IGWT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body { font-family:sans-serif; text-align:center; margin-top:100px; }
-    .expired { color:red; font-weight:bold; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #222;
+      padding: 30px;
+      border-radius: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    input {
+      background: #333;
+      color: #fff;
+    }
+    button {
+      background-color: #00ffcc;
+      color: #000;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00e6b8;
+    }
   </style>
 </head>
 <body>
-  <h1>🎉 Welcome to Your 7-Day Free Trial!</h1>
-  <p id="message"></p>
-
-  <a href="index.html">← Back to homepage</a>
-
-  <script>
-    function getTrialEndDate() {
-      const saved = localStorage.getItem("igwt_trial_end");
-      if (saved) return new Date(saved);
-
-      const end = new Date();
-      end.setDate(end.getDate() + 7);
-      localStorage.setItem("igwt_trial_end", end.toISOString());
-      return end;
-    }
-
-    const now = new Date();
-    const trialEnd = getTrialEndDate();
-    const msg = document.getElementById("message");
-
-    if (now < trialEnd) {
-      const daysLeft = Math.ceil((trialEnd - now) / (1000 * 60 * 60 * 24));
-      msg.innerHTML = `✅ You have <strong>${daysLeft}</strong> day(s) left in your free trial.`;
-    } else {
-      msg.innerHTML = `<span class="expired">❌ Your 7-day trial has expired.</span><br><br>
-      Please upgrade to continue.`;
-    }
-  </script>
+  <div class="container">
+    <h1>Start Your 7-Day Free Trial</h1>
+    <p>Enter your details below to begin building your store today.</p>
+    <input type="text" placeholder="Full Name" required />
+    <input type="email" placeholder="Email Address" required />
+    <button onclick="alert('Trial started! You’ll be redirected to your dashboard soon.')">Start Trial</button>
+  </div>
 </body>
 </html>
