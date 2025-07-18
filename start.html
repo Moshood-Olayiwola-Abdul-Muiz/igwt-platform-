@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IGWT Platform – Free Trial</title>
+  <style>
+    body { font-family:sans-serif; text-align:center; margin-top:100px; }
+    .expired { color:red; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <h1>🎉 Welcome to Your 7-Day Free Trial!</h1>
+  <p id="message"></p>
+
+  <a href="index.html">← Back to homepage</a>
+
+  <script>
+    function getTrialEndDate() {
+      const saved = localStorage.getItem("igwt_trial_end");
+      if (saved) return new Date(saved);
+
+      const end = new Date();
+      end.setDate(end.getDate() + 7);
+      localStorage.setItem("igwt_trial_end", end.toISOString());
+      return end;
+    }
+
+    const now = new Date();
+    const trialEnd = getTrialEndDate();
+    const msg = document.getElementById("message");
+
+    if (now < trialEnd) {
+      const daysLeft = Math.ceil((trialEnd - now) / (1000 * 60 * 60 * 24));
+      msg.innerHTML = `✅ You have <strong>${daysLeft}</strong> day(s) left in your free trial.`;
+    } else {
+      msg.innerHTML = `<span class="expired">❌ Your 7-day trial has expired.</span><br><br>
+      Please upgrade to continue.`;
+    }
+  </script>
+</body>
+</html>
